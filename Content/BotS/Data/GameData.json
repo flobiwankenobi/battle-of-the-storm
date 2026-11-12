@@ -17,7 +17,7 @@
 		"MaxLevel": 10,
 		"UltimateLevel": 8,
 		"LevelScaling": 1.04,
-		"XpPerLevel": [ 100, 100, 100, 100, 100, 100, 100, 150, 150 ],
+		"XpPerLevel": [ 120, 120, 140, 140, 160, 160, 180, 220, 220 ],
 		"CreatureXp": 80,
 		"HeroKillXp": 150,
 		"HeroKillXpPerLevel": 15,

@@ -73,6 +73,15 @@ protected:
 	bool bMoveUp = false, bMoveDown = false, bMoveLeft = false, bMoveRight = false;
 	bool bAttackHeld = false;
 	float NextAimSend = 0.f;
+
+	// Selbsttest (-BotSDemo): waehlt Held und Startpunkt, bewegt sich, nutzt Faehigkeiten und speichert Bildschirmfotos.
+	void DemoTick(float DeltaTime);
+	bool bDemo = false;
+	float DemoTotal = 0.f;
+	float DemoPhaseTime = 0.f;
+	float DemoNextCast = 0.f;
+	int32 DemoShots = 0;
+	EBotSMatchPhase DemoLastPhase = EBotSMatchPhase::WaitingForPlayers;
 };
 
 /** Oberflaeche des Prototyps, mit Canvas gezeichnet (Abweichung vom TDD: keine UMG-Widgets). */

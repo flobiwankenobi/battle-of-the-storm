@@ -11,6 +11,7 @@
 #include "Engine/LocalPlayer.h"
 #include "Engine/World.h"
 #include "EngineUtils.h"
+#include "UnrealClient.h"
 
 // ---------------------------------------------------------------------------------------------
 // PlayerController
@@ -18,7 +19,9 @@
 ABotSPlayerController::ABotSPlayerController()
 {
 	bShowMouseCursor = true;
-	Vision = CreateDefaultSubobject<UBotSVisionComponent>("Vision");
+	// Die Kamera gehoert dem CameraRig, nicht dem Helden.
+	bAutoManageActiveCameraTarget = false;
+	Vision =CreateDefaultSubobject<UBotSVisionComponent>("Vision");
 }
 
 ABotSPlayerState* ABotSPlayerController::GetBotSPlayerState() const { return GetPlayerState<ABotSPlayerState>(); }
@@ -38,6 +41,67 @@ void ABotSPlayerController::BeginPlay()
 	CameraRig = GetWorld()->SpawnActor<ABotSCameraRig>(ABotSCameraRig::StaticClass(), FTransform::Identity, Params);
 	StormWall = GetWorld()->SpawnActor<ABotSStormWall>(ABotSStormWall::StaticClass(), FTransform::Identity, Params);
 	SetViewTarget(CameraRig);
+	bDemo = FParse::Param(FCommandLine::Get(), TEXT("BotSDemo"));
+}
+
+void ABotSPlayerController::DemoTick(float DeltaTime)
+{
+	const ABotSGameState* GS = GetWorld()->GetGameState<ABotSGameState>();
+	const ABotSPlayerState* PS = GetBotSPlayerState();
+	if (!GS || !PS) { return; }
+	DemoTotal += DeltaTime;
+	if (GS->Phase != DemoLastPhase) { DemoLastPhase = GS->Phase; DemoPhaseTime = 0.f; DemoShots = 0; }
+	DemoPhaseTime += DeltaTime;
+	auto Shot = [this, GS](float At, int32 Index)
+	{
+		if (DemoShots == Index && DemoPhaseTime >= At)
+		{
+			++DemoShots;
+			FScreenshotRequest::RequestScreenshot(FString::Printf(TEXT("BotSDemo_%d_%d"), int32(GS->Phase), Index), true, false);
+		}
+	};
+	const FBotSGameData& Data = BotSData();
+	switch (GS->Phase)
+	{
+	case EBotSMatchPhase::HeroSelect:
+		Shot(1.f, 0);
+		if (DemoPhaseTime > 2.f && PS->HeroId.IsNone() && Data.Heroes.Num() > 0)
+		{
+			int32 Pick = FMath::RandRange(0, Data.Heroes.Num() - 1);
+			FParse::Value(FCommandLine::Get(), TEXT("BotSDemoHero="), Pick);
+			ServerSelectHero(Data.Heroes[FMath::Clamp(Pick, 0, Data.Heroes.Num() - 1)].Id);
+		}
+		Shot(3.5f, 1);
+		break;
+	case EBotSMatchPhase::SpawnSelect:
+		if (PS->SpawnChoice < 0 && DemoPhaseTime > 0.5f) { ServerSelectSpawn(2); }
+		Shot(1.2f, 0);
+		break;
+	case EBotSMatchPhase::Match:
+		Shot(3.f, 0); Shot(12.f, 1); Shot(30.f, 2); Shot(60.f, 3); Shot(120.f, 4);
+		bMoveUp = FMath::Fmod(DemoPhaseTime, 8.f) < 4.f;
+		bMoveRight = FMath::Fmod(DemoPhaseTime, 6.f) < 2.f;
+		bMoveDown = !bMoveUp && FMath::Fmod(DemoPhaseTime, 8.f) > 6.f;
+		bAttackHeld = true;
+		if (DemoPhaseTime >= DemoNextCast)
+		{
+			DemoNextCast = DemoPhaseTime + 1.2f;
+			const EBotSSlot Slots[] = { EBotSSlot::Ability1, EBotSSlot::Ability2, EBotSSlot::Ability3, EBotSSlot::Ultimate };
+			OnSlotPressed(Slots[FMath::RandRange(0, 3)]);
+			if (FMath::Fmod(DemoPhaseTime, 20.f) > 15.f) { ServerInteract(true); } else { ServerInteract(false); }
+			if (PS->GetOpenTalentTier() >= 0) { ServerChooseTalent(PS->GetOpenTalentTier(), 0); }
+		}
+		break;
+	case EBotSMatchPhase::Ended:
+		Shot(1.5f, 0);
+		break;
+	default:
+		Shot(2.f, 0);
+		break;
+	}
+	float MaxTime = 90.f;
+	FParse::Value(FCommandLine::Get(), TEXT("BotSDemoTime="), MaxTime);
+	if (DemoTotal >= MaxTime) { bDemo = false; ConsoleCommand(TEXT("quit")); }
 }
 
 UInputAction* ABotSPlayerController::AddAction(FName Name, FName DefaultKey)
@@ -132,6 +196,7 @@ void ABotSPlayerController::PlayerTick(float DeltaTime)
 		}
 	}
 
+	if (bDemo) { DemoTick(DeltaTime); }
 	ABotSHeroCharacter* Hero = GetHero();
 	const ABotSPlayerState* PS = GetBotSPlayerState();
 
