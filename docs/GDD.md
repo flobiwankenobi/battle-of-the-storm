@@ -2,6 +2,24 @@
 
 > Quelle: [Claude Doc](https://claude.ai/artifact/4qG6b8Q5nHg9knqsW4VPDN) · Diese Datei ist eine synchronisierte Kopie. Änderungen bitte im Claude Doc vornehmen.
 
+## Versionierung
+
+Aktuelle Version: 0.3. Jede inhaltliche Änderung an diesem Dokument wird hier festgehalten. Das gilt für Menschen und für Agents.
+
+**Regeln**
+
+1. Vor dem Speichern einer Änderung eine neue Zeile oben in die Tabelle eintragen: Version, Datum, Autor, Änderung mit betroffenen Abschnitten.
+2. Versionsnummer: zweite Stelle erhöhen bei Ergänzungen und Wertänderungen (0.3 → 0.4), erste Stelle bei Änderungen an Grundsatzentscheidungen (Genre, Modus, Design-Säulen).
+3. „Aktuelle Version“ in der Zeile über diesen Regeln anpassen.
+4. Reine Tippfehler-Korrekturen brauchen keinen Eintrag.
+5. Nach jeder Änderung die Kopien abgleichen: `docs/GDD.md` im Repository und `/Battle of the Storm/GDD.md` in Dropbox. Quelle ist das Claude Doc.
+
+| Version | Datum | Autor | Änderung |
+| --- | --- | --- | --- |
+| 0.3 | 2026-11-12 | Claude, im Auftrag von Florian | Versionierung eingeführt |
+| 0.2 | 2026-11-12 | Claude, im Auftrag von Florian | Tastenbelegung geändert: Fähigkeiten auf 1 bis 5, Aktivgegenstände auf Q und E (Abschnitte 6, 9, 16) |
+| 0.1 | 2026-11-12 | Claude, im Auftrag von Florian | Erste Fassung |
+
 ## 1. Überblick
 
 Battle of the Storm ist ein Top-Down-Battle-Royale für Trupps à 4 Spieler: Teams wählen Helden mit festen Rollen und Fähigkeiten, landen auf einer großen Karte und kämpfen, bis ein Trupp übrig ist. Ein Sturm zieht die spielbare Fläche in Phasen zusammen.
