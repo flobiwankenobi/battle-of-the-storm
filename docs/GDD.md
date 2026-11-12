@@ -4,7 +4,7 @@
 
 ## Versionierung
 
-Aktuelle Version: 0.3. Jede inhaltliche Änderung an diesem Dokument wird hier festgehalten. Das gilt für Menschen und für Agents.
+Aktuelle Version: 0.4. Jede inhaltliche Änderung an diesem Dokument wird hier festgehalten. Das gilt für Menschen und für Agents.
 
 **Regeln**
 
@@ -16,6 +16,7 @@ Aktuelle Version: 0.3. Jede inhaltliche Änderung an diesem Dokument wird hier f
 
 | Version | Datum | Autor | Änderung |
 | --- | --- | --- | --- |
+| 0.4 | 2026-11-12 | Claude, im Auftrag von Florian | Engine entschieden: Unreal Engine 5. Heldenzugang entschieden: freie Rotation, Kauf mit Spielwährung oder Echtgeld (Abschnitte 2, 12, 14, 16) |
 | 0.3 | 2026-11-12 | Claude, im Auftrag von Florian | Versionierung eingeführt |
 | 0.2 | 2026-11-12 | Claude, im Auftrag von Florian | Tastenbelegung geändert: Fähigkeiten auf 1 bis 5, Aktivgegenstände auf Q und E (Abschnitte 6, 9, 16) |
 | 0.1 | 2026-11-12 | Claude, im Auftrag von Florian | Erste Fassung |
@@ -56,7 +57,7 @@ Zielgruppe sind Spieler mit MOBA-Erfahrung, die kürzere Matches wollen, und Bat
 | Spieler pro Match | 60 (15 Trupps) | Vorschlag, abhängig von Technik |
 | Matchdauer | 18 bis 22 Minuten | Ziel |
 | Plattform | PC (Maus/Tastatur) zuerst | Vorschlag |
-| Geschäftsmodell | Free-to-Play, nur kosmetische Käufe | Vorschlag |
+| Geschäftsmodell | Free-to-Play; kaufbar sind Helden und Kosmetik | fest |
 | Altersfreigabe | Fantasy-Gewalt, Ziel USK 12 / PEGI 12 | Annahme |
 
 ## 3. Spielmodus und Match-Ablauf
@@ -323,18 +324,18 @@ Lesbarkeit: Verbündete Fähigkeiten in Blau, gegnerische in Rot, neutrale in Ge
 
 ## 12. Meta-Progression und Monetarisierung
 
-Außerhalb des Matches gibt es keinen spielerischen Vorteil zu kaufen oder zu erspielen. Alle Talente sind ab dem ersten Match verfügbar.
+Kaufbar sind Helden und Kosmetik, aber keine Stärke: Alle Talente eines Helden sind ab dem ersten Match verfügbar.
 
 | System | Inhalt |
 | --- | --- |
 | Spielerlevel | Freischaltung von Profil-Kosmetik |
 | Heldenlevel | Pro Held, schaltet Varianten und Embleme frei |
-| Heldenzugang | Vorschlag: alle Starthelden frei; neue Helden mit Spielwährung oder Echtgeld kaufbar |
+| Heldenzugang | Freie Rotation: wechselnde Auswahl kostenlos spielbarer Helden. Dauerhafter Besitz durch Kauf mit Spielwährung oder Echtgeld |
 | Saison-Pass | Gratis- und Premium-Stufe, nur Kosmetik |
 | Shop | Heldenoutfits, Sturmgleiter, Ausschaltungseffekte, Emotes |
 | Ranglisten | Ab Spielerlevel 20, eigene Saison-Wertung |
 
-**Offen:** Ob Helden gekauft werden müssen oder alle frei sind, hat großen Einfluss auf Fairness und Einnahmen und ist noch nicht entschieden.
+**Offen:** Größe und Wechselrhythmus der freien Rotation sowie die Heldenpreise.
 
 ## 13. Art-Direction und Audio
 
@@ -359,7 +360,7 @@ Die Insel Sturmbruch wird von einem ewigen Sturm umkreist, der Splitter einer ze
 
 ## 14. Technik
 
-Eine Engine ist noch nicht festgelegt; das Repository ist derzeit leer. Fest steht nur die Netzwerk-Architektur: dedizierte, autoritative Server.
+Das Spiel wird mit Unreal Engine 5 entwickelt. Netzwerk-Architektur: dedizierte, autoritative Server.
 
 ### Anforderungen
 
@@ -373,7 +374,7 @@ Eine Engine ist noch nicht festgelegt; das Repository ist derzeit leer. Fest ste
 | Sichtsystem | Nebel des Krieges serverseitig, gegen Wallhacks |
 | Zerstörbarkeit | Nur leichte Deckung, als Zustandswechsel statt Physiksimulation |
 
-### Engine-Optionen
+### Engine-Vergleich
 
 | Engine | Stärke für dieses Projekt | Schwäche |
 | --- | --- | --- |
@@ -381,7 +382,7 @@ Eine Engine ist noch nicht festgelegt; das Repository ist derzeit leer. Fest ste
 | Unity | Große Community, schnelle Prototypen | Netzwerk-Lösung muss gewählt werden (eigene oder Drittanbieter) |
 | Godot 4 | Leichtgewichtig, quelloffen, keine Lizenzkosten | Weniger erprobt bei großen Mehrspieler-Projekten |
 
-Empfehlung: Unreal Engine 5, weil Replikation und Fähigkeitensystem die größten technischen Risiken direkt abdecken. Entscheidung offen.
+Entscheidung: Unreal Engine 5, weil Replikation und Fähigkeitensystem die größten technischen Risiken direkt abdecken.
 
 ## 15. Balancing-Startwerte
 
@@ -402,11 +403,10 @@ Prüfung gegen das Tempo-Ziel aus Abschnitt 9: Fernkampf-Assassine gegen Fernkam
 
 Diese Entscheidungen fehlen noch; alle Werte oben sind bis dahin Vorschläge.
 
-- [ ] Engine festlegen (Empfehlung: Unreal Engine 5)
 - [ ] Spielerzahl bestätigen: 60 pro Match oder mehr, abhängig von Server-Tests
 - [ ] Truppgröße bestätigen (4) und ob Duo- oder Solo-Modi kommen
 - [ ] Steuerung: Klick-Bewegung zusätzlich als Option anbieten oder nicht (WASD ist festgelegt)
-- [ ] Heldenzugang: alle frei oder kaufbar
+- [ ] Freie Rotation: Anzahl der Helden und Wechselrhythmus; Heldenpreise
 - [ ] Plattformen nach PC (Konsole, Controller-Steuerung)
 - [ ] Lore und Namen der Helden ausarbeiten und auf Markenkonflikte prüfen
 - [ ] Vollständige Kits (Fähigkeiten 1 bis 3, Talente) für die 12 Starthelden
