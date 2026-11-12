@@ -135,11 +135,11 @@ Jeder Held hat dieselben Slots; die Stärke wächst über Talente, nicht über n
 | Slot | Taste | Verfügbar ab | Inhalt |
 | --- | --- | --- | --- |
 | Basisangriff | Linke Maustaste | Level 1 | Nah- oder Fernkampf, heldenabhängig |
-| Fähigkeit 1 bis 3 | Q, W, E | Level 1 | Kern-Kit des Helden, Abklingzeit 4 bis 16 s |
-| Merkmal | D | Level 1 | Passiv oder aktiv mit langer Abklingzeit |
-| Ultimative Fähigkeit | R | Level 8 | Eine von zwei Optionen, Abklingzeit 60 bis 120 s |
+| Fähigkeit 1 bis 3 | 1, 2, 3 | Level 1 | Kern-Kit des Helden, Abklingzeit 4 bis 16 s |
+| Merkmal | 5 | Level 1 | Passiv oder aktiv mit langer Abklingzeit |
+| Ultimative Fähigkeit | 4 | Level 8 | Eine von zwei Optionen, Abklingzeit 60 bis 120 s |
 | Sturmlauf | Z | Level 1 | Fortbewegung: +40 % Tempo nach 1 s Kanalisieren, endet bei Schaden |
-| Aktivgegenstand | 1, 2 | Fund | Gegenstände aus dem Loot (siehe Abschnitt 7) |
+| Aktivgegenstand | Q, E | Fund | Gegenstände aus dem Loot (siehe Abschnitt 7) |
 
 ### Ressource
 
@@ -233,9 +233,9 @@ Gesteuert wird mit WASD und Maus-Zielen, nicht mit Klick-Bewegung. Das unterstü
 | Bewegen | WASD |
 | Zielen | Mauszeiger |
 | Basisangriff | Linke Maustaste |
-| Fähigkeiten | Q, W, E, R, D |
+| Fähigkeiten | 1, 2, 3, 4, 5 |
 | Sturmlauf | Z |
-| Aktivgegenstände | 1, 2 |
+| Aktivgegenstände | Q, E |
 | Interagieren, Wiederbeleben | F |
 | Ping-Rad | Mittlere Maustaste |
 | Karte | Tab |
@@ -387,9 +387,9 @@ Diese Entscheidungen fehlen noch; alle Werte oben sind bis dahin Vorschläge.
 - [ ] Engine festlegen (Empfehlung: Unreal Engine 5)
 - [ ] Spielerzahl bestätigen: 60 pro Match oder mehr, abhängig von Server-Tests
 - [ ] Truppgröße bestätigen (4) und ob Duo- oder Solo-Modi kommen
-- [ ] Steuerung: WASD fest oder zusätzlich Klick-Bewegung als Option
+- [ ] Steuerung: Klick-Bewegung zusätzlich als Option anbieten oder nicht (WASD ist festgelegt)
 - [ ] Heldenzugang: alle frei oder kaufbar
 - [ ] Plattformen nach PC (Konsole, Controller-Steuerung)
 - [ ] Lore und Namen der Helden ausarbeiten und auf Markenkonflikte prüfen
-- [ ] Vollständige Kits (Q, W, E, Talente) für die 12 Starthelden
+- [ ] Vollständige Kits (Fähigkeiten 1 bis 3, Talente) für die 12 Starthelden
 - [ ] Prototyp-Umfang: Vorschlag 4 Helden, 1 Kartenbiom, 3 Sturmphasen, 8 Spieler
