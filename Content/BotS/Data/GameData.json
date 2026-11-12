@@ -1,0 +1,316 @@
+﻿{
+	"MatchRules": {
+		"MaxPlayers": 8,
+		"SquadSize": 2,
+		"bFillWithBots": true,
+		"WaitTime": 10,
+		"HeroSelectTime": 60,
+		"SpawnSelectTime": 20,
+		"EndScreenTime": 20,
+		"DownedDuration": 30,
+		"DownedHealthPct": 0.3,
+		"CrawlSpeed": 1.0,
+		"ReviveTime": 5,
+		"ReviveHealthPct": 0.3,
+		"ReviveRange": 2.5,
+		"bDropItemsOnElimination": true,
+		"MaxLevel": 10,
+		"UltimateLevel": 8,
+		"LevelScaling": 1.04,
+		"XpPerLevel": [ 100, 100, 100, 100, 100, 100, 100, 150, 150 ],
+		"CreatureXp": 80,
+		"HeroKillXp": 150,
+		"HeroKillXpPerLevel": 15,
+		"CatchUpPerLevel": 0.15,
+		"ChestItems": 2,
+		"CampLootChance": 0.5,
+		"bCreaturesRespawn": false
+	},
+	"Tuning": {
+		"MoveSpeed": 4.0,
+		"StormRunSpeedMul": 1.4,
+		"StormRunChannel": 1.0,
+		"bFaceCursor": true,
+		"CameraPitch": -60,
+		"CameraDistance": 24,
+		"CameraFOV": 55,
+		"CameraLead": 0.15,
+		"CameraLeadMax": 4,
+		"SightRange": 22,
+		"BaseMana": 500,
+		"ManaRegen": 4,
+		"HealthRegen": 4,
+		"InteractRange": 2.5,
+		"bShieldBlocksStorm": false,
+		"StormStartDiameter": 620
+	},
+	"Creature": {
+		"Health": 900,
+		"Damage": 55,
+		"AttackInterval": 1.2,
+		"AttackRange": 1.8,
+		"AggroRange": 8,
+		"LeashRange": 14,
+		"MoveSpeed": 3.6,
+		"CampSize": 3
+	},
+	"Map": {
+		"Size": 440,
+		"Cell": 2,
+		"Seed": 1337,
+		"BlockCells": 20,
+		"BuildingMin": 6,
+		"BuildingMax": 13,
+		"EmptyBlockChance": 0.3,
+		"WallHeight": 3,
+		"Chests": 16,
+		"SpawnPoints": 12,
+		"SpawnRadiusPct": 0.36
+	},
+	"RoleStats": [
+		{ "Role": "Tank", "Health": 2400, "AttackDamage": 80, "AttackSpeed": 1.0, "AttackRange": 1.5 },
+		{ "Role": "Fighter", "Health": 2000, "AttackDamage": 110, "AttackSpeed": 1.1, "AttackRange": 1.5 },
+		{ "Role": "Healer", "Health": 1500, "AttackDamage": 60, "AttackSpeed": 1.0, "AttackRange": 5.5 },
+		{ "Role": "Support", "Health": 1600, "AttackDamage": 65, "AttackSpeed": 1.0, "AttackRange": 5.5 },
+		{ "Role": "RangedAssassin", "Health": 1350, "AttackDamage": 120, "AttackSpeed": 1.25, "AttackRange": 6.5 },
+		{ "Role": "MeleeAssassin", "Health": 1450, "AttackDamage": 135, "AttackSpeed": 1.4, "AttackRange": 1.5 }
+	],
+	"StormPhases": [
+		{ "Wait": 120, "Shrink": 90, "Diameter": 220, "DamagePct": 2 },
+		{ "Wait": 90, "Shrink": 60, "Diameter": 90, "DamagePct": 5 },
+		{ "Wait": 60, "Shrink": 45, "Diameter": 0, "DamagePct": 12 }
+	],
+	"Heroes": [
+		{
+			"Id": "Kordo",
+			"Name": "Kordo",
+			"Role": "Tank",
+			"Concept": "Steinkoloss aus einem eingestürzten Gebirge",
+			"Color": { "R": 0.55, "G": 0.45, "B": 0.35, "A": 1 },
+			"TraitType": "ShieldOnHit",
+			"TraitName": "Geröll",
+			"TraitDescription": "Erlittener Schaden sammelt Geröll: 25 % davon werden zu einem Schild, höchstens 300.",
+			"TraitParams": { "Pct": 0.25, "Cap": 300, "Duration": 6 },
+			"Basic": { "Id": "Kordo_Basic", "Name": "Faustschlag", "Type": "Melee", "Params": { "ApMul": 1, "Angle": 120 } },
+			"Ability1": {
+				"Id": "Kordo_Steinwurf", "Name": "Steinwurf", "Type": "Projectile", "Cooldown": 6, "ManaCost": 40,
+				"Description": "Wirft einen Brocken. Der erste getroffene Gegner erleidet Schaden und wird verlangsamt.",
+				"Params": { "Damage": 140, "Speed": 18, "Range": 9, "Radius": 0.6, "SlowPct": 0.3, "SlowDuration": 2 }
+			},
+			"Ability2": {
+				"Id": "Kordo_Bebenschlag", "Name": "Bebenschlag", "Type": "Area", "Cooldown": 12, "ManaCost": 60,
+				"Description": "Schlägt nach kurzer Vorwarnung auf den Boden. Gegner im Umkreis erleiden Schaden und werden betäubt.",
+				"Params": { "Damage": 120, "Radius": 3.5, "Delay": 0.5, "Stun": 0.75 }
+			},
+			"Ability3": {
+				"Id": "Kordo_Felssturm", "Name": "Felssturm", "Type": "Dash", "Cooldown": 14, "ManaCost": 50,
+				"Description": "Stürmt in Zielrichtung und schleudert Gegner am Ziel zurück.",
+				"Params": { "Distance": 7, "EndRadius": 2.5, "Damage": 100, "Knockback": 3 }
+			},
+			"Ultimate": {
+				"Id": "Kordo_Erdrutsch", "Name": "Erdrutsch", "Type": "Projectile", "Cooldown": 80, "ManaCost": 100,
+				"Description": "Eine breite Geröllwelle rollt in einer Linie, trifft alle Gegner und schleudert sie zurück.",
+				"Params": { "Damage": 300, "Speed": 14, "Range": 14, "Radius": 1.6, "Pierce": 1, "Knockback": 5 }
+			},
+			"Talents": [
+				{
+					"Level": 1,
+					"Options": [
+						{ "Id": "Kordo_T1A", "Name": "Harter Fels", "Description": "+15 % maximale Lebenspunkte.", "Mods": [ { "Param": "MaxHealth", "Value": 0.15 } ] },
+						{ "Id": "Kordo_T1B", "Name": "Lawine", "Description": "Steinwurf durchschlägt Gegner und verursacht 40 mehr Schaden.", "Mods": [ { "Ability": "Kordo_Steinwurf", "Param": "Pierce", "Op": "Set", "Value": 1 }, { "Ability": "Kordo_Steinwurf", "Param": "Damage", "Op": "Add", "Value": 40 } ] }
+					]
+				},
+				{
+					"Level": 4,
+					"Options": [
+						{ "Id": "Kordo_T2A", "Name": "Nachbeben", "Description": "Bebenschlag betäubt 0,5 s länger und hat einen größeren Radius.", "Mods": [ { "Ability": "Kordo_Bebenschlag", "Param": "Stun", "Op": "Add", "Value": 0.5 }, { "Ability": "Kordo_Bebenschlag", "Param": "Radius", "Op": "Add", "Value": 1 } ] },
+						{ "Id": "Kordo_T2B", "Name": "Rammbock", "Description": "Felssturm reicht 2 m weiter und hat 4 s weniger Abklingzeit.", "Mods": [ { "Ability": "Kordo_Felssturm", "Param": "Distance", "Op": "Add", "Value": 2 }, { "Ability": "Kordo_Felssturm", "Param": "Cooldown", "Op": "Add", "Value": -4 } ] }
+					]
+				}
+			]
+		},
+		{
+			"Id": "Elowen",
+			"Name": "Elowen",
+			"Role": "Healer",
+			"Concept": "Wetterpriesterin, heilt mit Regen",
+			"Color": { "R": 0.3, "G": 0.75, "B": 0.6, "A": 1 },
+			"TraitType": "HealBonusLowHealth",
+			"TraitName": "Landregen",
+			"TraitDescription": "Heilung auf Ziele unter 30 % Lebenspunkten ist 25 % stärker.",
+			"TraitParams": { "Threshold": 0.3, "Bonus": 0.25 },
+			"Basic": { "Id": "Elowen_Basic", "Name": "Tropfen", "Type": "Projectile", "Params": { "ApMul": 1, "Speed": 26, "Radius": 0.3 } },
+			"Ability1": {
+				"Id": "Elowen_Regenguss", "Name": "Regenguss", "Type": "Area", "Cooldown": 5, "ManaCost": 50,
+				"Description": "Regen fällt auf den Zielbereich und heilt Verbündete darin.",
+				"Params": { "Heal": 260, "Range": 9, "Radius": 3, "Delay": 0.6 }
+			},
+			"Ability2": {
+				"Id": "Elowen_Hagelkorn", "Name": "Hagelkorn", "Type": "Projectile", "Cooldown": 7, "ManaCost": 40,
+				"Description": "Ein Hagelkorn trifft den ersten Gegner, verursacht Schaden und verlangsamt.",
+				"Params": { "Damage": 110, "Speed": 20, "Range": 10, "Radius": 0.5, "SlowPct": 0.35, "SlowDuration": 1.5 }
+			},
+			"Ability3": {
+				"Id": "Elowen_Rueckenwind", "Name": "Rückenwind", "Type": "Area", "Cooldown": 14, "ManaCost": 60,
+				"Description": "Verbündete im Umkreis erhalten einen Schild und laufen kurz schneller.",
+				"Params": { "Radius": 5, "Delay": 0.1, "Shield": 120, "ShieldDuration": 4, "HastePct": 0.3, "HasteDuration": 3 }
+			},
+			"Ultimate": {
+				"Id": "Elowen_Wolkenbruch", "Name": "Wolkenbruch", "Type": "Area", "Cooldown": 90, "ManaCost": 100,
+				"Description": "Ein Wolkenbruch heilt Verbündete im Zielbereich 5 s lang.",
+				"Params": { "Heal": 90, "Range": 9, "Radius": 6, "Delay": 0.5, "Duration": 5, "Interval": 0.5 }
+			},
+			"Talents": [
+				{
+					"Level": 1,
+					"Options": [
+						{ "Id": "Elowen_T1A", "Name": "Dauerregen", "Description": "Regenguss hat 1 s weniger Abklingzeit und kostet 15 weniger Mana.", "Mods": [ { "Ability": "Elowen_Regenguss", "Param": "Cooldown", "Op": "Add", "Value": -1 }, { "Ability": "Elowen_Regenguss", "Param": "ManaCost", "Op": "Add", "Value": -15 } ] },
+						{ "Id": "Elowen_T1B", "Name": "Eisregen", "Description": "Regenguss verlangsamt zusätzlich Gegner im Bereich um 30 % für 2 s.", "Mods": [ { "Ability": "Elowen_Regenguss", "Param": "SlowPct", "Op": "Set", "Value": 0.3 }, { "Ability": "Elowen_Regenguss", "Param": "SlowDuration", "Op": "Set", "Value": 2 } ] }
+					]
+				},
+				{
+					"Level": 4,
+					"Options": [
+						{ "Id": "Elowen_T2A", "Name": "Sturmböe", "Description": "Rückenwind gewährt 80 mehr Schild und wirkt 1 s länger.", "Mods": [ { "Ability": "Elowen_Rueckenwind", "Param": "Shield", "Op": "Add", "Value": 80 }, { "Ability": "Elowen_Rueckenwind", "Param": "HasteDuration", "Op": "Add", "Value": 1 } ] },
+						{ "Id": "Elowen_T2B", "Name": "Graupel", "Description": "Hagelkorn hält Gegner 1 s fest.", "Mods": [ { "Ability": "Elowen_Hagelkorn", "Param": "Root", "Op": "Set", "Value": 1 } ] }
+					]
+				}
+			]
+		},
+		{
+			"Id": "Sefa",
+			"Name": "Sefa",
+			"Role": "RangedAssassin",
+			"Concept": "Blitzschützin, nutzt Sturmenergie",
+			"Color": { "R": 0.95, "G": 0.85, "B": 0.25, "A": 1 },
+			"TraitType": "StormAttackSpeed",
+			"TraitName": "Sturmgeladen",
+			"TraitDescription": "Im Sturm +20 % Angriffsgeschwindigkeit.",
+			"TraitParams": { "Bonus": 0.2 },
+			"Basic": { "Id": "Sefa_Basic", "Name": "Funkenschuss", "Type": "Projectile", "Params": { "ApMul": 1, "Speed": 32, "Radius": 0.3 } },
+			"Ability1": {
+				"Id": "Sefa_Blitzlanze", "Name": "Blitzlanze", "Type": "Projectile", "Cooldown": 6, "ManaCost": 45,
+				"Description": "Ein schneller Blitz durchschlägt alle Gegner in einer Linie.",
+				"Params": { "Damage": 230, "Speed": 34, "Range": 13, "Radius": 0.5, "Pierce": 1 }
+			},
+			"Ability2": {
+				"Id": "Sefa_Funkenfeld", "Name": "Funkenfeld", "Type": "Area", "Cooldown": 11, "ManaCost": 55,
+				"Description": "Lädt den Zielbereich auf. Nach kurzer Vorwarnung erleiden Gegner Schaden und werden festgehalten.",
+				"Params": { "Damage": 200, "Range": 10, "Radius": 3, "Delay": 0.8, "Root": 1 }
+			},
+			"Ability3": {
+				"Id": "Sefa_Entladung", "Name": "Entladung", "Type": "Dash", "Cooldown": 13, "ManaCost": 40,
+				"Description": "Springt ein kurzes Stück in Zielrichtung und läuft danach kurz schneller.",
+				"Params": { "Distance": 5, "HastePct": 0.2, "HasteDuration": 2 }
+			},
+			"Ultimate": {
+				"Id": "Sefa_Gewitterzelle", "Name": "Gewitterzelle", "Type": "Area", "Cooldown": 90, "ManaCost": 100,
+				"Description": "Eine Gewitterzelle schlägt 4 s lang alle 0,5 s im Zielbereich ein.",
+				"Params": { "Damage": 85, "Range": 11, "Radius": 5, "Delay": 0.6, "Duration": 4, "Interval": 0.5 }
+			},
+			"Talents": [
+				{
+					"Level": 1,
+					"Options": [
+						{ "Id": "Sefa_T1A", "Name": "Hochspannung", "Description": "Blitzlanze verursacht 50 mehr Schaden.", "Mods": [ { "Ability": "Sefa_Blitzlanze", "Param": "Damage", "Op": "Add", "Value": 50 } ] },
+						{ "Id": "Sefa_T1B", "Name": "Schnellfeuer", "Description": "+15 % Angriffsgeschwindigkeit.", "Mods": [ { "Param": "AttackSpeed", "Value": 0.15 } ] }
+					]
+				},
+				{
+					"Level": 4,
+					"Options": [
+						{ "Id": "Sefa_T2A", "Name": "Überladung", "Description": "Funkenfeld ist größer und hält 0,5 s länger fest.", "Mods": [ { "Ability": "Sefa_Funkenfeld", "Param": "Radius", "Op": "Add", "Value": 1 }, { "Ability": "Sefa_Funkenfeld", "Param": "Root", "Op": "Add", "Value": 0.5 } ] },
+						{ "Id": "Sefa_T2B", "Name": "Blitzableiter", "Description": "Entladung reicht 2 m weiter und hat 4 s weniger Abklingzeit.", "Mods": [ { "Ability": "Sefa_Entladung", "Param": "Distance", "Op": "Add", "Value": 2 }, { "Ability": "Sefa_Entladung", "Param": "Cooldown", "Op": "Add", "Value": -4 } ] }
+					]
+				}
+			]
+		},
+		{
+			"Id": "Kiro",
+			"Name": "Kiro",
+			"Role": "MeleeAssassin",
+			"Concept": "Klingentänzer, Kombo-orientiert",
+			"Color": { "R": 0.8, "G": 0.3, "B": 0.75, "A": 1 },
+			"TraitType": "CritAfterAbility",
+			"TraitName": "Kombo",
+			"TraitDescription": "Nach einer Fähigkeit ist der nächste Basisangriff kritisch und verursacht doppelten Schaden.",
+			"TraitParams": { "Bonus": 1.0, "Window": 4 },
+			"Basic": { "Id": "Kiro_Basic", "Name": "Klingenhieb", "Type": "Melee", "Params": { "ApMul": 1, "Angle": 120 } },
+			"Ability1": {
+				"Id": "Kiro_Klingenwirbel", "Name": "Klingenwirbel", "Type": "Area", "Cooldown": 5, "ManaCost": 35,
+				"Description": "Wirbelt die Klingen und trifft alle Gegner im Umkreis.",
+				"Params": { "Damage": 190, "Radius": 3, "Delay": 0.15 }
+			},
+			"Ability2": {
+				"Id": "Kiro_Schattensprung", "Name": "Schattensprung", "Type": "Dash", "Cooldown": 9, "ManaCost": 40,
+				"Description": "Springt in Zielrichtung und trifft Gegner am Ziel.",
+				"Params": { "Distance": 7, "EndRadius": 2, "Damage": 150 }
+			},
+			"Ability3": {
+				"Id": "Kiro_Wurfklinge", "Name": "Wurfklinge", "Type": "Projectile", "Cooldown": 8, "ManaCost": 35,
+				"Description": "Wirft eine Klinge. Der erste getroffene Gegner erleidet Schaden und wird verlangsamt.",
+				"Params": { "Damage": 130, "Speed": 26, "Range": 9, "Radius": 0.4, "SlowPct": 0.4, "SlowDuration": 2 }
+			},
+			"Ultimate": {
+				"Id": "Kiro_TausendSchnitte", "Name": "Tausend Schnitte", "Type": "Area", "Cooldown": 100, "ManaCost": 100,
+				"Description": "Kiro ist 2 s lang unverwundbar und trifft Gegner im Umkreis 8-mal.",
+				"Params": { "Damage": 75, "Radius": 4, "Delay": 0.1, "Duration": 2, "Interval": 0.25, "Follow": 1, "Invulnerable": 2 }
+			},
+			"Talents": [
+				{
+					"Level": 1,
+					"Options": [
+						{ "Id": "Kiro_T1A", "Name": "Scharfe Klingen", "Description": "+12 % Basisangriffsschaden.", "Mods": [ { "Param": "AttackDamage", "Value": 0.12 } ] },
+						{ "Id": "Kiro_T1B", "Name": "Wirbelwind", "Description": "Klingenwirbel hat einen größeren Radius und 1 s weniger Abklingzeit.", "Mods": [ { "Ability": "Kiro_Klingenwirbel", "Param": "Radius", "Op": "Add", "Value": 1 }, { "Ability": "Kiro_Klingenwirbel", "Param": "Cooldown", "Op": "Add", "Value": -1 } ] }
+					]
+				},
+				{
+					"Level": 4,
+					"Options": [
+						{ "Id": "Kiro_T2A", "Name": "Hinterhalt", "Description": "Schattensprung betäubt Gegner am Ziel 0,5 s.", "Mods": [ { "Ability": "Kiro_Schattensprung", "Param": "Stun", "Op": "Set", "Value": 0.5 } ] },
+						{ "Id": "Kiro_T2B", "Name": "Leichtfuß", "Description": "+10 % Lauftempo.", "Mods": [ { "Param": "MoveSpeed", "Value": 0.1 } ] }
+					]
+				}
+			]
+		}
+	],
+	"Items": [
+		{ "Id": "Relic_Damage_C", "Name": "Wetzstein", "Description": "+8 % Basisangriffsschaden", "Kind": "RelicAttack", "Rarity": 0, "Stats": { "AttackDamage": 0.08 } },
+		{ "Id": "Relic_Damage_R", "Name": "Sturmgeschliffener Wetzstein", "Description": "+16 % Basisangriffsschaden", "Kind": "RelicAttack", "Rarity": 1, "Stats": { "AttackDamage": 0.16 } },
+		{ "Id": "Relic_Haste_C", "Name": "Windfeder", "Description": "+10 % Angriffsgeschwindigkeit", "Kind": "RelicAttack", "Rarity": 0, "Stats": { "AttackSpeed": 0.1 } },
+		{ "Id": "Relic_Haste_R", "Name": "Orkanfeder", "Description": "+20 % Angriffsgeschwindigkeit", "Kind": "RelicAttack", "Rarity": 1, "Stats": { "AttackSpeed": 0.2 } },
+		{ "Id": "Relic_Cdr_C", "Name": "Taktstein", "Description": "8 % kürzere Abklingzeiten", "Kind": "RelicAttack", "Rarity": 0, "Stats": { "CooldownReduction": 0.08 } },
+		{ "Id": "Relic_Cdr_R", "Name": "Donnertakt", "Description": "16 % kürzere Abklingzeiten", "Kind": "RelicAttack", "Rarity": 1, "Stats": { "CooldownReduction": 0.16 } },
+		{ "Id": "Relic_Health_C", "Name": "Kieselherz", "Description": "+8 % Lebenspunkte", "Kind": "RelicDefense", "Rarity": 0, "Stats": { "MaxHealth": 0.08 } },
+		{ "Id": "Relic_Health_R", "Name": "Felsherz", "Description": "+16 % Lebenspunkte", "Kind": "RelicDefense", "Rarity": 1, "Stats": { "MaxHealth": 0.16 } },
+		{ "Id": "Relic_Guard_C", "Name": "Wachamulett", "Description": "Schild von 100 bei Kampfbeginn", "Kind": "RelicDefense", "Rarity": 0, "Stats": { "CombatShield": 100 } },
+		{ "Id": "Relic_Guard_R", "Name": "Bollwerkamulett", "Description": "Schild von 200 bei Kampfbeginn", "Kind": "RelicDefense", "Rarity": 1, "Stats": { "CombatShield": 200 } },
+		{ "Id": "Relic_Speed_C", "Name": "Wanderstiefel", "Description": "+5 % Lauftempo", "Kind": "RelicUtility", "Rarity": 0, "Stats": { "MoveSpeed": 0.05 } },
+		{ "Id": "Relic_Speed_R", "Name": "Sturmläuferstiefel", "Description": "+10 % Lauftempo", "Kind": "RelicUtility", "Rarity": 1, "Stats": { "MoveSpeed": 0.1 } },
+		{ "Id": "Relic_Revive_C", "Name": "Feldverband", "Description": "20 % schnellere Wiederbelebung", "Kind": "RelicUtility", "Rarity": 0, "Stats": { "ReviveSpeed": 0.2 } },
+		{ "Id": "Relic_Revive_R", "Name": "Lebensfunke", "Description": "40 % schnellere Wiederbelebung", "Kind": "RelicUtility", "Rarity": 1, "Stats": { "ReviveSpeed": 0.4 } },
+		{
+			"Id": "Active_Heal", "Name": "Heiltrank", "Description": "Heilt 500 Lebenspunkte über 5 s", "Kind": "Active", "Rarity": 0, "Charges": 1, "MaxCharges": 3,
+			"Ability": { "Id": "Item_Heiltrank", "Name": "Heiltrank", "Type": "SelfBuff", "Cooldown": 8, "Params": { "HealOverTime": 500, "HealDuration": 5 } }
+		},
+		{
+			"Id": "Active_Shield", "Name": "Schildphiole", "Description": "Schild von 350 für 5 s", "Kind": "Active", "Rarity": 0, "Charges": 1, "MaxCharges": 3,
+			"Ability": { "Id": "Item_Schildphiole", "Name": "Schildphiole", "Type": "SelfBuff", "Cooldown": 8, "Params": { "Shield": 350, "ShieldDuration": 5 } }
+		}
+	],
+	"ChestLoot": [
+		{ "Item": "Relic_Damage_C", "Weight": 6 }, { "Item": "Relic_Damage_R", "Weight": 2 },
+		{ "Item": "Relic_Haste_C", "Weight": 6 }, { "Item": "Relic_Haste_R", "Weight": 2 },
+		{ "Item": "Relic_Cdr_C", "Weight": 6 }, { "Item": "Relic_Cdr_R", "Weight": 2 },
+		{ "Item": "Relic_Health_C", "Weight": 6 }, { "Item": "Relic_Health_R", "Weight": 2 },
+		{ "Item": "Relic_Guard_C", "Weight": 6 }, { "Item": "Relic_Guard_R", "Weight": 2 },
+		{ "Item": "Relic_Speed_C", "Weight": 6 }, { "Item": "Relic_Speed_R", "Weight": 2 },
+		{ "Item": "Relic_Revive_C", "Weight": 6 }, { "Item": "Relic_Revive_R", "Weight": 2 },
+		{ "Item": "Active_Heal", "Weight": 16 }, { "Item": "Active_Shield", "Weight": 12 }
+	],
+	"CampLoot": [
+		{ "Item": "Relic_Damage_R", "Weight": 3 }, { "Item": "Relic_Haste_R", "Weight": 3 }, { "Item": "Relic_Cdr_R", "Weight": 3 },
+		{ "Item": "Relic_Health_R", "Weight": 3 }, { "Item": "Relic_Guard_R", "Weight": 3 }, { "Item": "Relic_Speed_R", "Weight": 3 },
+		{ "Item": "Relic_Revive_R", "Weight": 3 }, { "Item": "Active_Heal", "Weight": 8 }, { "Item": "Active_Shield", "Weight": 6 }
+	]
+}
