@@ -197,9 +197,8 @@ Stand 2026-11-12, alles auf dem Entwicklungsrechner von Florian.
 
 Nicht geprüft:
 
-- **Kein Client wurde gestartet.** Kamera, Steuerung, HUD, Sichtsystem, Sturmwand und die Darstellung im Client sind ungetestet. Ob Umlaute in der Engine-Schrift erscheinen und ob die Belichtung stimmt, ist offen.
-- Der Selbsttest-Modus des Clients (`-BotSDemo`, wählt Held und Startpunkt, bewegt sich, speichert Bildschirmfotos) und die Einstellung `bAutoManageActiveCameraTarget` sind geschrieben, aber **nicht gebaut**. Der nächste Build kann daran scheitern.
-- Die angehobenen Erfahrungswerte (`XpPerLevel`) sind nach dem Bot-Match geändert und nicht erneut gelaufen.
+- Client geprüft per Selbsttest `-BotSDemo` (1 Client gegen den dedizierten Server, Screenshots): Verbindung, Heldenwahl mit Umlauten, Startpunkt, Kamera, HUD, Minikarte, Lebensbalken funktionieren. **Nicht geprüft** sind Steuerung per echter Tastatur und Maus, Fühlbarkeit, Sichtsystem im Kampf, Sturmwand von nahem, zwei Clients, Latenz. Die Karte wirkt sehr hell, die Farben der Graubox greifen vermutlich nicht (Material-Parameter ungeprüft).
+- Die angehobenen Erfahrungswerte (`XpPerLevel`) sind nach dem Bot-Match geändert. Ein voller Lauf damit fehlt.
 - Sturm bis zum Ende: Das Bot-Match endete in Phase 1 durch Kämpfe. Sturmschaden, Phasen 2 und 3 und das Ende durch den Sturm sind im Lauf nicht vorgekommen.
 - Wiederbelebung, Ultimative Fähigkeiten (Level 8) und Lager kamen im Log des Laufs nicht vor.
 - Netzwerk unter Latenz, Bewegungsvorhersage des Sturmlaufs, zwei Clients im Editor, Leistungswerte, eigenständiger Server.

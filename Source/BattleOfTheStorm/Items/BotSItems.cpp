@@ -336,6 +336,7 @@ ABotSMapGeometry::ABotSMapGeometry()
 	KeyLight->SetMobility(EComponentMobility::Movable);
 	KeyLight->SetRelativeRotation(FRotator(-55.f, 35.f, 0.f));
 	KeyLight->SetIntensity(6.f);
+	KeyLight->ForwardShadingPriority = 1;
 	FillLight = CreateDefaultSubobject<UDirectionalLightComponent>("FillLight");
 	FillLight->SetupAttachment(RootComponent);
 	FillLight->SetMobility(EComponentMobility::Movable);
